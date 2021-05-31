@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import onClickOutside from 'react-onclickoutside';
+
 import { ChevronDownIcon, FilterIcon } from '@heroicons/react/outline';
 
 import { filterlist } from '../../constants/filterlist';
+import { useTableContext, usePaginationContext } from '../../context';
 
-function Filter() {
+export function Filter() {
   const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState('All Launches');
+
+  const { selection, setSelection, setQueryFilter } = useTableContext();
+  const { setOffset, setActiveNumber } = usePaginationContext();
+
   const toggle = () => setOpen(!open);
 
-  Filter.handleClickOutside = () => setOpen(false);
-
-  const handleOnClick = (item) => {
-    setSelection([item]);
+  const handleOnClick = (filter) => {
+    setSelection(filter.value);
+    setQueryFilter(filter.queryParams);
+    setOffset(0);
+    setActiveNumber(1);
   };
 
   return (
@@ -37,7 +42,7 @@ function Filter() {
         <ul className="py-2 border-2 rounded relative z-20 bg-white ">
           {filterlist.map((filter) => (
             <li key={filter.id} className="py-1 bg-white hover:bg-gray-100">
-              <button onClick={() => handleOnClick(filter.value)}>
+              <button onClick={() => handleOnClick(filter)}>
                 <span className="font-sm pl-4">{filter.value}</span>
               </button>
             </li>
@@ -47,9 +52,3 @@ function Filter() {
     </div>
   );
 }
-
-const clickOutsideConfig = {
-  handleClickOutside: () => Filter.handleClickOutside,
-};
-
-export default onClickOutside(Filter, clickOutsideConfig);

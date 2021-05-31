@@ -1,22 +1,29 @@
 import { useState, useEffect } from 'react';
+
+import { usePaginationContext } from '../context';
+
 export const useFetch = (url) => {
   const [response, setResponse] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const { setTotalItemCount } = usePaginationContext();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const res = await fetch(url);
+        setTotalItemCount(res.headers.get('spacex-api-count'));
         const json = await res.json();
-        // const result = await json.data;
+        setLoading(false);
         setResponse(json);
       } catch (error) {
         setError(error);
       }
     };
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url, setTotalItemCount]);
 
-  return { response, error };
+  return { response, error, loading };
 };
