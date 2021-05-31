@@ -33,6 +33,3 @@ export const setBadgeColour = (launchStatus) => {
       : 'bg-red-200';
   return badgeColour;
 };
-
-// const filteredResponse = response.filter((res) => res.upcoming);
-// console.log(filteredResponse);

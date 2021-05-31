@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { Filter, Table } from '../../components';
+import { Filter, Paginate, Table } from '../../components';
+import { TableContextProvider, PaginationContextProvider } from '../../context';
 
 export const Frame = () => {
   return (
-    <div className="w-3/4 mx-auto">
-      <Filter />
-      <Table />
-    </div>
+    <TableContextProvider>
+      <PaginationContextProvider>
+        <div className="w-3/4 mx-auto">
+          <Filter />
+          <Table />
+          <Paginate />
+        </div>
+      </PaginationContextProvider>
+    </TableContextProvider>
   );
 };
