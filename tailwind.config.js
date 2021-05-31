@@ -9,6 +9,7 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       spacing: {
+        100: '500px',
         200: '1000px',
       },
     },
@@ -16,5 +17,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [],
 };
