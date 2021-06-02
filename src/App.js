@@ -2,12 +2,18 @@ import './App.css';
 import { Header } from './components';
 import { Frame } from './containers';
 
+import { TableContextProvider, PaginationContextProvider } from './context';
+
 const App = () => {
   return (
-    <div>
-      <Header />
-      <Frame />
-    </div>
+    <>
+      <TableContextProvider>
+        <PaginationContextProvider>
+          <Header />
+          <Frame />
+        </PaginationContextProvider>
+      </TableContextProvider>
+    </>
   );
 };
 
