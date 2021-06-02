@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { Filter, Paginate, Table } from '../../components';
+import { Paginate, Table } from '../../components';
+import { FilterContainer } from '../FilterContainer';
 
 export const Frame = () => {
   return (
     <div className="w-3/4 mx-auto">
-      <Filter />
+      <FilterContainer />
       <Table />
       <Paginate />
     </div>
