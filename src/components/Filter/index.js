@@ -14,6 +14,7 @@ export function Filter() {
   const toggle = () => setOpen(!open);
 
   const handleOnClick = (filter) => {
+    setOpen(!open);
     setSelection(filter.value);
     setQueryFilter(filter.queryParams);
     setOffset(0);
@@ -21,7 +22,7 @@ export function Filter() {
   };
 
   return (
-    <div className="flex-column w-52 h-8 mt-4 ml-auto z-20 opacity-100 ">
+    <div className="flex-column w-52 h-8 mt-4 ml-auto opacity-100 ">
       <div
         tabIndex={0}
         role="button"
