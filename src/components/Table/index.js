@@ -1,43 +1,29 @@
 import React from 'react';
 
-import { Head } from './Head';
-import { Row } from './Row';
-import { Spinner } from '../Spinner';
-import { EmptyState } from '../EmptyState';
+export const Table = ({ children }) => {
+  return <table className="w-full table-fixed relative">{children}</table>;
+};
 
-import { useFetch } from '../../hooks/useFetch';
-import { useTableContext, usePaginationContext } from '../../context';
-import { ModalContextProvider } from '../../context';
+Table.Header = function TableHeader({ children }) {
+  return <thead>{children}</thead>;
+};
 
-export const Table = () => {
-  const { queryFilter } = useTableContext();
-  const { offset } = usePaginationContext();
+Table.HeaderRow = function TableHeaderRow({ children }) {
+  return <tr className="h-10 bg-gray-100">{children}</tr>;
+};
 
-  const apiUrl = `https://api.spacexdata.com/v3/launches${queryFilter}&offset=${offset}`;
-
-  const { response, loading } = useFetch(apiUrl);
-
+Table.HeaderCell = function TableHeaderCell({
+  children,
+  textAlign,
+  cellWidth,
+}) {
   return (
-    <div className="border-2 min-h-500 rounded-md mt-4">
-      <table className="w-full table-fixed relative">
-        <Head />
-        {loading ? (
-          <Spinner />
-        ) : response.length < 1 ? (
-          <EmptyState />
-        ) : (
-          <tbody>
-            {response.map((launch) => (
-              <ModalContextProvider>
-                <Row
-                  key={`${launch.flight_number} ${launch.launch_date_unix}`}
-                  {...launch}
-                />
-              </ModalContextProvider>
-            ))}
-          </tbody>
-        )}
-      </table>
-    </div>
+    <th className={`text-sm font-medium ${cellWidth} ${textAlign}`}>
+      {children}
+    </th>
   );
+};
+
+Table.Body = function TableBody({ children }) {
+  return <tbody className="bg-white">{children}</tbody>;
 };

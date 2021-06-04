@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Filter, Paginate, Table } from '../../components';
+import { FilterContainer } from '../FilterContainer';
+import { TableContainer } from '../TableContainer';
 
 export const Frame = () => {
   return (
-    <div className="w-3/4 mx-auto">
-      <Filter />
-      <Table />
-      <Paginate />
+    <div className="w-3/4 mx-auto mt-10">
+      <FilterContainer />
+      <TableContainer />
     </div>
   );
 };

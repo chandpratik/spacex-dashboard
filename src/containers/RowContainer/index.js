@@ -1,18 +1,17 @@
 import React from 'react';
 
+import { Badge, Modal, Row } from '../../components';
+
+import { useModalContext } from '../../context';
 import {
   formatLaunchDate,
   appendZero,
   setBadgeColour,
   setLaunchStatus,
 } from '../../utils/table.utils';
-import { Badge } from '../Badge';
-import { Modal } from '../Modal';
 
-import { useModalContext } from '../../context';
-
-export const Row = (props) => {
-  const { showModal, setShowModal } = useModalContext();
+export const RowContainer = (props) => {
+  const { showModal } = useModalContext();
   const {
     flight_number,
     launch_date_utc,
@@ -36,33 +35,32 @@ export const Row = (props) => {
 
   return (
     <>
-      <tr
-        className="cursor-pointer relative h-9.5"
-        onClick={() => setShowModal(!showModal)}
-      >
-        <td className="text-sm text-center font-normal ">{no}</td>
-        <td className="text-sm font-normal ">{launch_date}</td>
-        <td className="text-sm font-normal ">{launch_site.site_name}</td>
-        <td className="text-sm font-normal ">{mission_name}</td>
-        <td className="text-sm text-center font-normal ">
+      <Row>
+        <Row.DataCell textAlign="text-center">{no}</Row.DataCell>
+        <Row.DataCell textALign="text-left">{launch_date}</Row.DataCell>
+        <Row.DataCell textALign="text-left">
+          {launch_site.site_name}
+        </Row.DataCell>
+        <Row.DataCell textALign="text-left">{mission_name}</Row.DataCell>
+        <Row.DataCell textAlign="text-center">
           {rocket.second_stage.payloads[0].orbit}
-        </td>
-        <td className="text-sm text-center font-normal ">
+        </Row.DataCell>
+        <Row.DataCell textALign="text-center">
           <Badge
             status={launchStatus}
             badgeColour={badgeColour}
             badgeTextColour={textColour}
           />
-        </td>
-        <td className="text-sm text-center font-normal ">
+        </Row.DataCell>
+        <Row.DataCell textAlign="text-center">
           {rocket.rocket_name}
-        </td>
-      </tr>
+        </Row.DataCell>
+      </Row>
       {showModal && (
         <Modal
           {...props}
           date={launch_date}
-          badge={
+          badgeComponent={
             <Badge
               status={launchStatus}
               badgeColour={badgeColour}

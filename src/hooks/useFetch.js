@@ -1,29 +1,29 @@
+import axios from 'axios';
+
 import { useState, useEffect } from 'react';
 
-import { usePaginationContext } from '../context';
-
 export const useFetch = (url) => {
-  const [response, setResponse] = useState([]);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const { setTotalItemCount } = usePaginationContext();
+  const [error, setError] = useState(null);
+  const [response, setResponse] = useState([]);
+  const [totalItemsCount, setTotalItemsCount] = useState(0);
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const result = await axios.get(url);
+      setResponse(result.data);
+      setLoading(false);
+      setTotalItemsCount(Number(result.headers['spacex-api-count']));
+    } catch (err) {
+      setLoading(false);
+      setError(err.message);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(url);
-        setTotalItemCount(res.headers.get('spacex-api-count'));
-        const json = await res.json();
-        setLoading(false);
-        setResponse(json);
-      } catch (error) {
-        setError(error);
-      }
-    };
     fetchData();
-  }, [url, setTotalItemCount]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
 
-  return { response, error, loading };
+  return { response, error, totalItemsCount, loading };
 };
