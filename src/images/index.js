@@ -1,6 +1,6 @@
-import nasa from './nasa.png';
-import wiki from './wiki.svg';
-import yt from './yt.svg';
+import nasaLogo from './nasa.png';
+import wikipediaLogo from './wiki.svg';
+import ytLogo from './yt.svg';
 import comingsoon from './coming-soon.svg';
 
-export { nasa, wiki, yt, comingsoon };
+export { nasaLogo, wikipediaLogo, ytLogo, comingsoon };

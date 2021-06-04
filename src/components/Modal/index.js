@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { XIcon } from '@heroicons/react/outline';
 
-import { nasa, wiki, yt, comingsoon } from '../../images';
+import { nasaLogo, wikipediaLogo, ytLogo, comingsoon } from '../../images';
 import { useModalContext } from '../../context';
 
 export const Modal = (props) => {
@@ -16,7 +16,7 @@ export const Modal = (props) => {
     },
 
     date,
-    badge,
+    badgeComponent,
     launch_site: { site_name },
     links: { mission_patch_small, wikipedia, article_link, video_link },
 
@@ -42,17 +42,26 @@ export const Modal = (props) => {
             <span className="text-sm font-light block my-1">{rocket_name}</span>
             <div className="flex my-2">
               <a href={article_link} target="_blank" rel="noreferrer">
-                <img src={nasa} alt="article_link" className="w-5 h-4 mr-1" />
+                <img
+                  src={nasaLogo}
+                  alt="article_link"
+                  className="w-5 h-4 mr-1"
+                />
               </a>
               <a href={wikipedia} target="_blank" rel="noreferrer">
-                <img src={wiki} alt="wikipedia_link" className="w-5 h-4 mr-1" />
+                <img
+                  src={wikipediaLogo}
+                  alt="wikipedia_link"
+                  className="w-5 h-4 mr-1"
+                />
               </a>
               <a href={video_link} target="_blank" rel="noreferrer">
-                <img src={yt} alt="yt_link" className="w-5 h-4 mr-1" />
+                <img src={ytLogo} alt="yt_link" className="w-5 h-4 mr-1" />
               </a>
             </div>
           </div>
-          <div className="mt-0.5">{badge}</div>
+          <div className="mt-0.5">{badgeComponent}</div>
+          {/* Close Button */}
           <XIcon
             className="absolute top-1 right-1 z-20 w-4 gray-300"
             role="button"
@@ -63,7 +72,7 @@ export const Modal = (props) => {
         {/*Modal Details */}
         <div className="max-w-2xl max-h-64 py-2">
           <p className="text-sm">
-            {details}{' '}
+            {details}
             <a
               href={wikipedia}
               className="text-blue-600 "
