@@ -3,11 +3,7 @@ import React from 'react';
 import { useTableContext } from '../../context';
 
 export function Filter({ children }) {
-  return (
-    <div className="flex-column w-52 h-8 mt-4 ml-auto opacity-100 ">
-      {children}
-    </div>
-  );
+  return <div className="flex-column w-52 h-8 my-4 ml-auto">{children}</div>;
 }
 
 Filter.Frame = function FilterFrame({ children, action }) {
