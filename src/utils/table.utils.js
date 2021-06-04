@@ -1,8 +1,8 @@
 import moment from 'moment';
 
-export const formatLaunchDate = (status, utcDate) => {
+export const formatLaunchDate = (launchSuccessful, utcDate) => {
   let formattedDate;
-  if (status) {
+  if (launchSuccessful) {
     formattedDate = moment.utc(utcDate).format(`DD MMMM YYYY HH:mm`);
   } else {
     formattedDate = moment.utc(utcDate).format(`DD MMMM YYYY [at] HH:mm`);
