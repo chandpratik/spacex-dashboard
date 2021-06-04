@@ -6,3 +6,5 @@ export * from './Pagination';
 export * from './Modal';
 export * from './Spinner';
 export * from './EmptyState';
+export * from './Row';
+export * from './ErrorState';
