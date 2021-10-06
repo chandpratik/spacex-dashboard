@@ -2,6 +2,11 @@
 
 Spacex Dashboard is a web application which displays the upcoming, successful and failed launches of SpaceX. It also shows detailed information about a particular space launch.
 
+## 🔗 Links
+
+- [Deployed App](https://spacex-dashboard-chandpratik.netlify.app/)
+- [Github Repo](https://github.com/chandpratik/spacex-dashboard)
+
 ## Screenshots
 
 ![App Screenshot](https://res.cloudinary.com/roomshare/image/upload/v1633534992/spacex-dashboard_mzfdwf.png)
